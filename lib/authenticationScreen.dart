@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:icar/login.dart';
+import 'package:icar/register.dart';
 
 class AuthenticationScreen extends StatefulWidget {
   const AuthenticationScreen({Key? key}) : super(key: key);
@@ -10,8 +12,63 @@ class AuthenticationScreen extends StatefulWidget {
 class _AuthenticationScreenState extends State<AuthenticationScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('animal!'),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [
+                    Colors.blueAccent,
+                    Colors.redAccent,
+                  ],
+                  begin: const FractionalOffset(0.0, 0.0),
+                  end: const FractionalOffset(1.0, 0.0),
+                  stops: [0.0, 1.0],
+                  tileMode: TileMode.clamp),
+            ),
+          ),
+          title: Text(
+            "iCar",
+            style: TextStyle(
+                fontSize: 60.0, color: Colors.white, fontFamily: "Lobster"),
+          ),
+          centerTitle: true,
+          bottom: TabBar(
+            tabs: [
+              Tab(
+                icon: Icon(Icons.lock, color: Colors.white),
+                text: "Login",
+              ),
+              Tab(
+                icon: Icon(Icons.lock, color: Colors.white),
+                text: "Register",
+              )
+            ],
+            indicatorColor: Colors.white38,
+            indicatorWeight: 5.0,
+          ),
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.blueAccent,
+                Colors.redAccent,
+              ],
+            ),
+          ),
+          child: TabBarView(
+            children: [
+              Login(),
+              Register(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
